@@ -6,27 +6,31 @@ let board = [
 ];
 let round = 1;
 const winner_comb = {
-    1: [1,1,1,0,0,0,0,0,0], // first row
-    2: [0,0,0,1,1,1,0,0,0], // second row
-    3: [0,0,0,0,0,0,1,1,1], // third row
-    4: [1,0,0,1,0,0,1,0,0], // first col
-    5: [0,1,0,0,1,0,0,1,0], // second col
-    6: [0,0,1,0,0,1,0,0,1], // third col
-    7: [1,0,0,0,1,0,0,0,1], // diagonal left
-    8: [0,0,1,0,1,0,1,0,0]  // diagonal right
+    'First Row': [1,1,1,0,0,0,0,0,0],
+    'Second Row': [0,0,0,1,1,1,0,0,0],
+    'Third Row': [0,0,0,0,0,0,1,1,1],
+    'First Col': [1,0,0,1,0,0,1,0,0],
+    'Second Col': [0,1,0,0,1,0,0,1,0],
+    'Third Col': [0,0,1,0,0,1,0,0,1],
+    'Diagonal Left': [1,0,0,0,1,0,0,0,1],
+    'Diagonal Right': [0,0,1,0,1,0,1,0,0]
 };
 
 function isWinner(r){
-    // convert to board to temp (convert null to 0 and 1 to all player)
-    let temp = [];
-    for (let i = 0; i < board.length; i++) {
-        board[i] === r?temp.push(1):temp.push(0);
-    }
-
     // Verify if winner
     for (const [key, value] of Object.entries(winner_comb)) {
+        // convert to board to temp (convert null to 0 and 1 to all player)
+        // TO FIX TMP DOESNT GO THERE
+        let temp = [];
+        for (let i = 0; i < board.length; i++) {
+            board[i] === r?temp.push(1):temp.push(0);
+        }
+
         for (let i = 0; i < temp.length; i++) {
-            if (temp[i] !== value[i] && temp[i] === 1 && value[i] === 0)temp[i] = 0;
+            if (temp[i] !== value[i] && temp[i] === 1)temp[i] = 0;
+        }
+
+        for (let i = 0; i < temp.length; i++) {
             if (temp[i] !== value[i]) break;
             if (i === (temp.length-1)) return true;
         }
@@ -178,6 +182,7 @@ function Play(target, boardNbr) {
 /*
     What's next ?
 
+    Return what combinaison they did to win
     O winning doesnt convert well to winner comb (second row of O)
     Replace prompt with input in form (s1)
     Player name must match 
