@@ -20,13 +20,9 @@ function isWinner(r){
     // Verify if winner
     for (const [key, value] of Object.entries(winner_comb)) {
         // convert to board to temp (convert null to 0 and 1 to all player)
-        // TO FIX TMP DOESNT GO THERE
         let temp = [];
         for (let i = 0; i < board.length; i++) {
             board[i] === r?temp.push(1):temp.push(0);
-        }
-
-        for (let i = 0; i < temp.length; i++) {
             if (temp[i] !== value[i] && temp[i] === 1)temp[i] = 0;
         }
 
@@ -56,6 +52,14 @@ function Reset(){
 
     // Reset round
     round = 1;
+
+    // assign play on click on table
+    const cells = document.querySelectorAll("#tictactoe > div");
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].onclick = (e) => Play(e.target, i);
+        cells[i].onmouseover = handleHover;
+        cells[i].onmouseout = handleHoverOut;
+    }
 }
 
 const handleHover = e => {
@@ -81,9 +85,7 @@ const handleReset = e => {
     document.querySelector("#winning_fiesta").outerHTML = '';
     // clean played div
     const cells = document.querySelectorAll("#tictactoe > div");
-    for (let i = 0; i < cells.length; i++) {
-        cells[i].className = '';
-    }
+    for (let i = 0; i < cells.length; i++) cells[i].className = '';
 }
 
 const endGameOverlay = player => {
@@ -128,7 +130,7 @@ function CreateConfetti() {
 }
 
 function Play(target, boardNbr) {
-    if (isWinner(round) !== false) return;
+    if (isWinner(round) !== false) return; // check if already won
     if (board[boardNbr] != null) return; // return if already played
     board[boardNbr] = round; //play board nbr
     
@@ -163,40 +165,10 @@ function Play(target, boardNbr) {
 
 
 (()=>{
-    // assign play on click on table
-    const cells = document.querySelectorAll("#tictactoe > div");
-    for (let i = 0; i < cells.length; i++) {
-        cells[i].onclick = (e) => Play(e.target, i);
-        cells[i].onmouseover = handleHover;
-        cells[i].onmouseout = handleHoverOut;
-    }
-
+    Reset();
     // Ask for names of player
-    for (let i = 0; i < 2; i++) {
-        // let response = prompt(`Enter name of Player ${i+1}`);
-        // console.log(AddPlayer(response));
-    }
+    // for (let i = 0; i < 2; i++) {
+    //     let response = prompt(`Enter name of Player ${i+1}`);
+    //     console.log(AddPlayer(response));
+    // }
 })();
-
-
-/*
-    What's next ?
-
-    Return what combinaison they did to win
-    O winning doesnt convert well to winner comb (second row of O)
-    Replace prompt with input in form (s1)
-    Player name must match 
-        - less than 50 charater
-        - Does not include special character(spaces are not included)
-    
-    hand writing with sound when playing
-    startup animation (drawing the table)
-    reset animation
-    css var
-    fix onload transition
-    beatify page
-    blue color for O and red for X
-    draw page with confeti and sound and overlay
-    match system (1 - 0, 2 - 0)
-
-*/

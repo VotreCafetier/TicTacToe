@@ -1,0 +1,10 @@
+:root{
+    --white: white;
+    --dark-white: #f3f3f3;
+    --played: rgb(231, 175, 175);
+    --red: rgb(153, 0, 0);
+    --blue: blue;
+    --light-black: #e3e3e3;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --black: #2a2a2a;
+}
