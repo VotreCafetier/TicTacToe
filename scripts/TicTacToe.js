@@ -28,17 +28,17 @@ function isWinner(r){
 
         for (let i = 0; i < temp.length; i++) {
             if (temp[i] !== value[i]) break;
-            if (i === (temp.length-1)) return true;
+            if (i === (temp.length-1)) return { win: true, comb: key };
         }
     }
 
     // verifiy if draw
     for (let i = 0; i < board.length; i++) {
         if (board[i] === null) break;
-        if (i === (board.length-1)) return "Draw";
+        if (i === (board.length-1)) return { win: "Draw"};
     }
 
-    return false;
+    return { win:false };
 }
 
 function Reset(){
@@ -56,6 +56,7 @@ function Reset(){
     // assign play on click on table
     const cells = document.querySelectorAll("#tictactoe > div");
     for (let i = 0; i < cells.length; i++) {
+        cells[i].innerHTML = '';
         cells[i].onclick = (e) => Play(e.target, i);
         cells[i].onmouseover = handleHover;
         cells[i].onmouseout = handleHoverOut;
@@ -88,14 +89,14 @@ const handleReset = e => {
     for (let i = 0; i < cells.length; i++) cells[i].className = '';
 }
 
-const endGameOverlay = player => {
+const endGameOverlay = (player, msg) => {
     const div = document.querySelector("body > div");
     let status;
     if (player === 'Draw'){
         status = 'Draw';
     }
     else{
-        status = `${player} is the winner`;
+        status = `${player} is the winner with the ${msg}`;
     }
     div.innerHTML += `
     <div id="winning_fiesta">
@@ -130,7 +131,7 @@ function CreateConfetti() {
 }
 
 function Play(target, boardNbr) {
-    if (isWinner(round) !== false) return; // check if already won
+    if (isWinner(round).win !== false) return; // check if already won
     if (board[boardNbr] != null) return; // return if already played
     board[boardNbr] = round; //play board nbr
     
@@ -147,9 +148,9 @@ function Play(target, boardNbr) {
 
     // is winner
     winner = isWinner(round);
-    switch (winner) {
+    switch (winner.win) {
         case true:
-            endGameOverlay(player[round-1]);
+            endGameOverlay(player[round-1], winner.comb);
             CreateConfetti();
             break;
         
