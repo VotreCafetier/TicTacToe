@@ -31,12 +31,14 @@ body > div{
 }
 
 button{
-    height: 40px;
-    max-width: 200px;
+    height: 60px;
+    max-width: 300px;
     width: 100%;
+    font-size: 16pt;
     border-radius: 10px;
     border: 0;
     cursor: pointer;
+    font-weight: bold;
 }
 
     button:active{
@@ -59,13 +61,13 @@ button{
     #players_overlay p{
         font-size: 12pt;
         font-weight: normal;
-        transition: all 0.4s;
+        transition: font-size 0.4s, font-weight 0.4s;
     }
 
     #players_overlay .active_player{
         font-size: 15pt;
         font-weight: bold;
-        transition: all 0.4s;
+        transition: font-size 0.4s, font-weight 0.4s;
     }
 
     #players_overlay div{
@@ -142,17 +144,23 @@ h1{
     overflow: hidden;
 }
 
-#winning_fiesta h1{
-    color: var(--white);
-}
-
-#winning_fiesta button{
-    background-color: var(--white);
-}
-
-    #winning_fiesta button:hover{
-        background-color: var(--light-black);
+    #winning_fiesta h1{
+        color: var(--white);
     }
+
+    #winning_fiesta > div{
+        max-width: 100%;
+        width: 100%;
+    }
+
+    #winning_fiesta button{
+        background-color: var(--white);
+        margin-top: 30px;
+    }
+
+        #winning_fiesta button:hover{
+            background-color: var(--light-black);
+        }
 
 .confetti > div {
     width: 15px;

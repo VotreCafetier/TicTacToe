@@ -82,7 +82,7 @@ class TicTacToe{
             <div>
                 <h1>${status} !</h1>
                 <div class="confetti"></div>
-                <button onclick="handleReset()">Play again !</button>
+                <button onclick="handleReset()">PLAY AGAIN</button>
             </div>
         </div>`;
     }
@@ -161,7 +161,6 @@ const handlePlay = (g,e,i) => {
 
     // change player overlay
     const p_overlay = document.querySelectorAll('#players_overlay p');
-    console.log(p_overlay[0].className);
     if (round == 1) {
         p_overlay[0].className = 'active_player';
         p_overlay[1].className = '';
@@ -172,7 +171,16 @@ const handlePlay = (g,e,i) => {
 }
 
 function Reset(){
-    const game = new TicTacToe(['Player 1','Player 2']);
+    let player = [];
+    // reset player overlay
+    const p_overlay = document.querySelectorAll('#players_overlay p');
+    // Ask for names of player
+    for (let i = 0; i < 2; i++) {
+        let response = prompt(`Enter name of Player ${i+1}`);
+        player.push(response);
+        p_overlay[i].innerText = response;
+    }
+    const game = new TicTacToe(player);
     // assign play on click on table
     const cells = document.querySelectorAll("#tictactoe > div");
     for (let i = 0; i < cells.length; i++) {
@@ -186,9 +194,4 @@ function Reset(){
 
 (()=>{
     Reset();
-    // Ask for names of player
-    // for (let i = 0; i < 2; i++) {
-    //     let response = prompt(`Enter name of Player ${i+1}`);
-    //     console.log(AddPlayer(response));
-    // }
 })();
