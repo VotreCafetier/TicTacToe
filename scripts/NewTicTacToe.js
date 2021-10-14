@@ -112,13 +112,14 @@ class TicTacToe{
                 break;
             
             case "Draw":
-                ShowEndOverlay('Draw');
+                this.ShowEndOverlay('Draw');
                 break;
             
             default:
                 this.round == 1 ? this.round = 2: this.round = 1; //change round
-                return this.round;
+                break;
         }
+        return this.round;
     }
 }
 
