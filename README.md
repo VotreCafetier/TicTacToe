@@ -3,12 +3,9 @@ Vanilla JS
 
 
 ## What is left to do
-- Create a new interface
 - Dark and Light theme
 - Import name overlay
-- Convertir en class
-- Create confetti in just css
-
+- Create confetti in js
 
 
 - hand writing with sound when playing

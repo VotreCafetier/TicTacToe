@@ -149,13 +149,29 @@ const handleReset = e => {
     for (let i = 0; i < cells.length; i++) cells[i].className = '';
 }
 
+const handlePlay = (g,e,i) => {
+    // play
+    g.Play(e, i);
+
+    // change player overlay
+    const p_overlay = document.querySelectorAll('#players_overlay p');
+    console.log(p_overlay[0].className);
+    if (p_overlay[0].className = '') {
+        p_overlay[0].className = 'active_player';
+        p_overlay[1].className = '';
+    } else {
+        p_overlay[1].className = 'active_player';
+        p_overlay[0].className = '';
+    }
+}
+
 function Reset(){
     const game = new TicTacToe(['Player 1','Player 2']);
     // assign play on click on table
     const cells = document.querySelectorAll("#tictactoe > div");
     for (let i = 0; i < cells.length; i++) {
         cells[i].innerHTML = '';
-        cells[i].onclick = (e) => game.Play(e.target, i);
+        cells[i].onclick = (e) => handlePlay(game, e.target, i);
         cells[i].onmouseover = (e) => handleHover(e, game.round);
         cells[i].onmouseout = handleHoverOut;
     }

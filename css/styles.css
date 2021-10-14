@@ -43,6 +43,45 @@ button{
         transform: translateY(1px);
     }
 
+
+
+
+#players_overlay{
+    position: fixed;
+    width: 100%;
+    top: 30px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    #players_overlay p{
+        font-size: 12pt;
+        font-weight: normal;
+        transition: all 0.4s;
+    }
+
+    #players_overlay .active_player{
+        font-size: 15pt;
+        font-weight: bold;
+        transition: all 0.4s;
+    }
+
+    #players_overlay div{
+        width: 1px;
+        height: 60px;
+        background-color: var(--black);
+        margin-right: 30px;
+        margin-left: 50px;
+    }
+
+
+
+
+
+
+
 #tictactoe{
     display: inline-grid;
     position: relative;
