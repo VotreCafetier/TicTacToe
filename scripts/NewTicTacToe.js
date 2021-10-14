@@ -117,7 +117,7 @@ class TicTacToe{
             
             default:
                 this.round == 1 ? this.round = 2: this.round = 1; //change round
-                break;
+                return this.round;
         }
     }
 }
@@ -147,16 +147,21 @@ const handleReset = e => {
     // clean played div
     const cells = document.querySelectorAll("#tictactoe > div");
     for (let i = 0; i < cells.length; i++) cells[i].className = '';
+    
+    // reset player overlay
+    const p_overlay = document.querySelectorAll('#players_overlay p');
+    p_overlay[0].className = 'active_player';
+    p_overlay[1].className = '';
 }
 
 const handlePlay = (g,e,i) => {
     // play
-    g.Play(e, i);
+    const round = g.Play(e, i);
 
     // change player overlay
     const p_overlay = document.querySelectorAll('#players_overlay p');
     console.log(p_overlay[0].className);
-    if (p_overlay[0].className = '') {
+    if (round == 1) {
         p_overlay[0].className = 'active_player';
         p_overlay[1].className = '';
     } else {
