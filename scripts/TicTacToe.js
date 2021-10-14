@@ -119,11 +119,11 @@ function AddPlayer(name){
 
 function CreateConfetti() {
     const confetti_container = document.querySelector('.confetti');
-    color = [];
+    const color = [];
     for (let i = 0; i < 50; i++) {
-        delay = Math.floor(Math.random() * 5);
-        rnd_color = 0;
-        rnd_left = 0;
+        const delay = Math.floor(Math.random() * 5);
+        const rnd_color = 0;
+        const rnd_left = 0;
 
         confetti_container.innerHTML += `<div class='${i}'></div>`;
         i.style = `background-color: #f2d74e; left: ${100/50}; animation-delay: -${delay}s;`;

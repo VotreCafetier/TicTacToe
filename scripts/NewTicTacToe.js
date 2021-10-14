@@ -47,7 +47,25 @@ class TicTacToe{
     // Not finished yet
     CreateConfetti() {
         const confetti_container = document.querySelector('.confetti');
-        const color = ['#f2d74e','#95c3de','#ff9a91'];
+        const colors = ['#f2d74e','#95c3de','#ff9a91'];
+        
+        // background-color: ${rnd_color}; 
+        // left: ${rnd_left}px; 
+        // animation-delay: -${delay}s;
+        for (let i = 0; i < 50; i++) {
+            const delay = Math.floor(Math.random() * 5);
+            const rnd_color = colors[Math.floor(Math.random() * colors.length)];
+            const rnd_left = Math.ceil(Math.random() * window.innerWidth);
+            confetti_container.innerHTML += `
+            <div 
+            class="${i}"
+            style="
+            "
+            >
+            </div>
+            `;
+            //i.style = `background-color: #f2d74e; left: ${100/50}; animation-delay: -${delay}s;`;
+        }
     }
 
     ShowEndOverlay(p, msg){
@@ -57,7 +75,7 @@ class TicTacToe{
             status = 'Draw';
         }
         else{
-            status = `${p} is the winner with the ${msg}`;
+            status = `${p} is the winner with ${msg}`;
         }
         div.innerHTML += `
         <div id="winning_fiesta">
@@ -104,6 +122,12 @@ class TicTacToe{
     }
 }
 
+
+const handleHoverOut = e => {
+    target = e.target;
+    if(target.className !== 'played')target.innerHTML = '';
+}
+
 const handleHover = (e,r) => {
     const target = e.target;
     if(target.className === 'played') return;
@@ -116,23 +140,16 @@ const handleHover = (e,r) => {
     }
 }
 
-const handleHoverOut = e => {
-    target = e.target;
-    if(target.className !== 'played')target.innerHTML = '';
+const handleReset = e => {
+    Reset();
+    //close overlay
+    document.querySelector("#winning_fiesta").outerHTML = '';
+    // clean played div
+    const cells = document.querySelectorAll("#tictactoe > div");
+    for (let i = 0; i < cells.length; i++) cells[i].className = '';
 }
 
-// const handleReset = e => {
-//     Reset();
-//     //close overlay
-//     document.querySelector("#winning_fiesta").outerHTML = '';
-//     // clean played div
-//     const cells = document.querySelectorAll("#tictactoe > div");
-//     for (let i = 0; i < cells.length; i++) cells[i].className = '';
-// }
-
-
-
-(()=>{
+function Reset(){
     const game = new TicTacToe(['Player 1','Player 2']);
     // assign play on click on table
     const cells = document.querySelectorAll("#tictactoe > div");
@@ -142,6 +159,11 @@ const handleHoverOut = e => {
         cells[i].onmouseover = (e) => handleHover(e, game.round);
         cells[i].onmouseout = handleHoverOut;
     }
+}
+
+
+(()=>{
+    Reset();
     // Ask for names of player
     // for (let i = 0; i < 2; i++) {
     //     let response = prompt(`Enter name of Player ${i+1}`);
