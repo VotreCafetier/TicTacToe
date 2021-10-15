@@ -6,7 +6,8 @@ Vanilla JS
 - Dark and Light theme
 - Import name overlay
 - Create confetti in js
-- Pick a color for player which influence what color is the background of the player (if not selected random color)
+- Pick a color for player which influences what color is the background of the player (if not selected random color)
+- Dany Gauthier watermark at end of document
 
 
 - hand writing with sound when playing

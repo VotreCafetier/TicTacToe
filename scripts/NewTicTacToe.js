@@ -1,4 +1,8 @@
-class TicTacToe{
+import * as constants from './constant.js';
+import * as overlay from './overlays.js';
+import * as events from './events.js';
+
+ export class TicTacToe{
     constructor(Player){
         this.player = Player;
         this.board = [
@@ -77,30 +81,24 @@ class TicTacToe{
         else{
             status = `${p} is the winner with ${msg}`;
         }
-        div.innerHTML += `
-        <div id="winning_fiesta">
-            <div>
-                <h1>${status} !</h1>
-                <div class="confetti"></div>
-                <button onclick="handleReset()">PLAY AGAIN</button>
-            </div>
-        </div>`;
+        div.innerHTML += overlay.endGameOverlay(status);
+        document.querySelector("#winning_fiesta button").addEventListener('click', events.handleReset)
     }
     
     Play(target, boardNbr) {
         if (this.isWinner(this.round).win !== false) return; // check if already won
         if (this.board[boardNbr] != null) return; // return if already played
         this.board[boardNbr] = this.round; //play board nbr
-        
+
         // Show card as played
         target.className = 'played';
-    
+
         // render x for 1 && o for 2
         if(this.round === 1){
-            target.innerHTML = `<img src="img/X.svg"/>`;
+            target.innerHTML = constants.x_img;
         }
         else{
-            target.innerHTML = `<img src="img/O.svg"/>`;
+            target.innerHTML = constants.o_img;
         }
     
         // is winner
@@ -122,76 +120,3 @@ class TicTacToe{
         return this.round;
     }
 }
-
-
-const handleHoverOut = e => {
-    target = e.target;
-    if(target.className !== 'played')target.innerHTML = '';
-}
-
-const handleHover = (e,r) => {
-    const target = e.target;
-    if(target.className === 'played') return;
-    // render x for 1 && o for 2
-    if(r === 1){
-        target.innerHTML = `<img src="img/X.svg" alt="X" />`;
-    }
-    else{
-        target.innerHTML = `<img src="img/O.svg" alt="O" />`;
-    }
-}
-
-const handleReset = e => {
-    Reset();
-    //close overlay
-    document.querySelector("#winning_fiesta").outerHTML = '';
-    // clean played div
-    const cells = document.querySelectorAll("#tictactoe > div");
-    for (let i = 0; i < cells.length; i++) cells[i].className = '';
-    
-    // reset player overlay
-    const p_overlay = document.querySelectorAll('#players_overlay p');
-    p_overlay[0].className = 'active_player';
-    p_overlay[1].className = '';
-}
-
-const handlePlay = (g,e,i) => {
-    // play
-    const round = g.Play(e, i);
-
-    // change player overlay
-    const p_overlay = document.querySelectorAll('#players_overlay p');
-    if (round == 1) {
-        p_overlay[0].className = 'active_player';
-        p_overlay[1].className = '';
-    } else {
-        p_overlay[1].className = 'active_player';
-        p_overlay[0].className = '';
-    }
-}
-
-function Reset(){
-    let player = [];
-    // reset player overlay
-    const p_overlay = document.querySelectorAll('#players_overlay p');
-    // Ask for names of player
-    for (let i = 0; i < 2; i++) {
-        let response = prompt(`Enter name of Player ${i+1}`);
-        player.push(response);
-        p_overlay[i].innerText = response;
-    }
-    const game = new TicTacToe(player);
-    // assign play on click on table
-    const cells = document.querySelectorAll("#tictactoe > div");
-    for (let i = 0; i < cells.length; i++) {
-        cells[i].innerHTML = '';
-        cells[i].onclick = (e) => handlePlay(game, e.target, i);
-        cells[i].onmouseover = (e) => handleHover(e, game.round);
-        cells[i].onmouseout = handleHoverOut;
-    }
-}
-
-
-(()=>{
-    Reset();
-})();
