@@ -2,18 +2,22 @@
 Vanilla JS
 
 
-## What is left to do
+## Next features
 - Dark and Light theme
-- Import name overlay
-- Create confetti in js
+- Name overlay
+- JS Confetti
 - Pick a color for player which influences what color is the background of the player (if not selected random color)
 - Dany Gauthier watermark at end of document
+- XD interface
+- Opening animation
+- Reset animation
+
+# To fix
+- Responsive
 
 
+
+# Ideas
 - hand writing with sound when playing
 - startup animation (drawing the table)
-- reset animation
-- Add onload transition
-- blue color for O and red for X
-- Responsive
 - match system (1 - 0, 2 - 0)?

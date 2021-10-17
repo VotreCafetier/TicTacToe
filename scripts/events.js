@@ -1,4 +1,4 @@
-import { TicTacToe } from "./NewTicTacToe.js";
+import { TicTacToe } from "./TicTacToe.js";
 import * as constant from './constant.js';
 export const handleReset = e => {
     Reset();
