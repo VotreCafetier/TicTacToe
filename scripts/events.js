@@ -1,7 +1,7 @@
-import { TicTacToe } from "./TicTacToe.js";
+import { TicTacToe } from "./game/TicTacToe.js";
 import * as constant from './constant.js';
-import * as overlay from './overlays.js';
-import { CreateConfetti } from './confetti.js';
+import * as overlay from './visual/overlays.js';
+import { CreateConfetti } from './visual/confetti.js';
 
 export const handleReset = e => {
     Reset();
@@ -86,4 +86,5 @@ export const ShowEndOverlay = (p, msg) => {
 
 document.addEventListener("DOMContentLoaded", e => {
     Reset();
+    document.querySelector("footer span").innerText = new Date().getFullYear();  //Replace date in footer for current year
 });

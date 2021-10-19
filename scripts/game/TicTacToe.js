@@ -1,5 +1,5 @@
-import * as constants from './constant.js';
-import * as events from './events.js';
+import * as constants from '../constant.js';
+import * as events from '../events.js';
 
  export class TicTacToe{
     constructor(Player){
