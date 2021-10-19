@@ -56,7 +56,7 @@ button{
 
 input{
     height: 35px;
-    max-width: 250px;
+    max-width: 280px;
     width: 100%;
     border-radius: 3px;
     font-size: 13pt;
@@ -176,7 +176,8 @@ h1{
 }
 
     #NameForm > div{
-        width: 500px;
+        max-width: 700px;
+        width: 100%;
         height: auto;
         background-color: white;
         padding: 50px 40px;
@@ -186,7 +187,27 @@ h1{
         margin: auto;
     }
 
+    #NameForm > div > div > *{
+        display: block;
+        margin-left: auto!important;
+        margin-right: auto!important;
+        margin-top: 15px;
+    }
+
+    #NameForm a{
+        margin-top: 2px!important;
+        color: rgba(210,70,252,1);
+        text-align: left;
+        max-width: 300px;
+        cursor: pointer;
+    }
+
+        #NameForm a:hover{
+            color: rgba(63,94,251,1);
+        }
+
     #NameForm button{
+        margin-top: 30px!important;
         background: rgb(63,94,251);
         background: linear-gradient(343deg, rgba(63,94,251,1) 1%, rgba(210,70,252,1) 69%);
         box-shadow: 0px 4px 13px -7px rgb(16, 22, 53), 5px 5px 15px 5px rgba(0,0,0,0);
@@ -201,6 +222,7 @@ h1{
         }
 
         #NameForm button:active{
+            box-shadow: 0px 4px 13px -7px rgb(16, 22, 53), 5px 5px 15px 5px rgba(0,0,0,0);
             transform: translateY(0);
             transition: box-shadow 0.2s, transform 0.1s;
         }
