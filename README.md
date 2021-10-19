@@ -7,7 +7,6 @@ Vanilla JS
 - Name overlay
 - JS Confetti
 - Pick a color for player which influences what color is the background of the player (if not selected random color)
-- Dany Gauthier watermark at end of document
 - XD interface
 - Opening animation
 - Reset animation
