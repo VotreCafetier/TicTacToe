@@ -1,5 +1,4 @@
 import * as constants from './constant.js';
-import * as overlay from './overlays.js';
 import * as events from './events.js';
 
  export class TicTacToe{
@@ -47,43 +46,6 @@ import * as events from './events.js';
 
         return { win:false };
     }
-
-    // In progress
-    CreateConfetti() {
-        const confetti_container = document.querySelector('.confetti');
-        const colors = ['#f2d74e','#95c3de','#ff9a91'];
-        
-        // background-color: ${rnd_color}; 
-        // left: ${rnd_left}px; 
-        // animation-delay: -${delay}s;
-        for (let i = 0; i < 50; i++) {
-            const delay = Math.floor(Math.random() * 5);
-            const rnd_color = colors[Math.floor(Math.random() * colors.length)];
-            const rnd_left = Math.ceil(Math.random() * window.innerWidth);
-            confetti_container.innerHTML += `
-            <div 
-            class="${i}"
-            style="
-            "
-            >
-            </div>
-            `;
-            //i.style = `background-color: #f2d74e; left: ${100/50}; animation-delay: -${delay}s;`;
-        }
-    }
-
-    ShowEndOverlay(p, msg){
-        const div = document.querySelector("body > div");
-        let status;
-        if (p === 'Draw'){
-            status = 'Draw';
-        }
-        else{
-            status = `${p} is the winner with ${msg}`;
-        }
-        div.innerHTML += overlay.endGameOverlay(status);
-        document.querySelector("#winning_fiesta button").addEventListener('click', events.handleReset)
-    }
     
     Play(target, boardNbr) {
         if (this.isWinner(this.round).win !== false) return; // check if already won
@@ -105,12 +67,11 @@ import * as events from './events.js';
         const winner = this.isWinner(this.round);
         switch (winner.win) {
             case true:
-                this.ShowEndOverlay(this.player[this.round-1], winner.comb);
-                this.CreateConfetti();
+                events.ShowEndOverlay(this.player[this.round-1], winner.comb);
                 break;
             
             case "Draw":
-                this.ShowEndOverlay('Draw');
+                events.ShowEndOverlay('Draw');
                 break;
             
             default:

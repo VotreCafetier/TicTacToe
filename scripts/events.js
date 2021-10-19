@@ -1,5 +1,8 @@
 import { TicTacToe } from "./TicTacToe.js";
 import * as constant from './constant.js';
+import * as overlay from './overlays.js';
+import { CreateConfetti } from './confetti.js';
+
 export const handleReset = e => {
     Reset();
     //close overlay
@@ -65,6 +68,20 @@ export const Reset = () => {
         cells[i].onmouseover = (e) => handleHover(e, game.round);
         cells[i].onmouseout = handleHoverOut;
     }
+}
+
+export const ShowEndOverlay = (p, msg) => {
+    const div = document.querySelector("body > div");
+    let status;
+    if (p === 'Draw'){
+        status = 'Draw';
+    }
+    else{
+        status = `${p} is the winner with ${msg}`;
+    }
+    div.innerHTML += overlay.endGameOverlay(status);
+    document.querySelector("#winning_fiesta button").addEventListener('click', handleReset);
+    CreateConfetti();
 }
 
 document.addEventListener("DOMContentLoaded", e => {
