@@ -197,14 +197,22 @@ h1{
     #NameForm a{
         margin-top: 2px!important;
         color: rgba(210,70,252,1);
-        text-align: left;
+        text-align: right;
         max-width: 300px;
         cursor: pointer;
     }
 
         #NameForm a:hover{
-            color: rgba(63,94,251,1);
+            color: rgb(143 49 171);
         }
+
+    #NameForm h1{
+        margin-bottom: 30px;
+    }
+
+    #NameForm span{
+        font-size: 18pt;
+    }
 
     #NameForm button{
         margin-top: 30px!important;

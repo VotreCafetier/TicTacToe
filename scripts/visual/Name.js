@@ -1,13 +1,14 @@
-function ChangeName() {
-    const nom_text = document.querySelector("#NomText");
-    nom_text.innerText = this.value;
-    if (this.value == "") {
-        nom_text.innerText = this.placeholder;
+const ChangeName = (e) => {
+    const t = e.target;
+    const nom_text = document.querySelector("#NameForm span");
+    nom_text.innerText = t.value;
+    if (t.value == "") {
+        nom_text.innerText = t.placeholder;
     }
 }
 
-function SubmitName(){
-    const inputNom = document.querySelector("#Nom");
+const SubmitName = () =>{
+    const inputNom = document.querySelector("#NameForm input[type=text]");
     // if empty
     if (inputNom.value === ''){
         console.log('Veuillez entrer un nom');
@@ -16,8 +17,7 @@ function SubmitName(){
     alert('Votre nom à changé ! Vous êtes maintenant : ' + inputNom.value)
 }
 
-async function GetRndName(){
-    //Get https://api.namefake.com/
+const GetRndName = async () =>{
     try{
         let response = await fetch('https://api.namefake.com/');
         let data = await response.json();
@@ -28,12 +28,11 @@ async function GetRndName(){
     }
 }
 
-// onload
 (() => {
-    const nom_text = document.querySelector("#NomText");
-    const inputNom = document.querySelector("#Nom");
-    const btn_enter = document.querySelector("#EnterForm button");
-    const rnd_link = document.querySelector("#EnterForm a");
+    const nom_text = document.querySelector("#NameForm span"),
+        inputNom = document.querySelector("#NameForm input[type=text]"),
+        btn_enter = document.querySelector("#NameForm button"),
+        rnd_link = document.querySelector("#NameForm a");
 
     // set span to placeholder of input
     nom_text.innerText = inputNom.placeholder;
@@ -41,7 +40,7 @@ async function GetRndName(){
     // events
     inputNom.onkeydown = ChangeName;
     inputNom.onkeyup = ChangeName;
-    inputNom.onchange = ChangeName;
+    inputNom.onkeypress = ChangeName;
 
     // submit btn
     btn_enter.onclick = SubmitName;

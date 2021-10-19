@@ -5,6 +5,7 @@ Vanilla JS
 ## Next features
 - Dark and Light theme
 - Name overlay
+- Name overlay loading when random
 - JS Confetti
 - Pick a color for player which influences what color is the background of the player (if not selected random color)
 - XD interface
