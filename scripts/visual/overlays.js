@@ -17,11 +17,22 @@ export const NameOverlay = () => {
                 <h1>CHANGER VOTRE NOM</h1>
                 <span></span>
                 <div>
-                    <input type="text" placeholder="Votre nom" id="Nom"/>
+                    <input type="text" placeholder="Votre nom"/>
                     <a>Random</a>
                     <button>Changer</button>
                 </div>
             </div>
+        </div>`
+    );
+}
+
+export const Loader = () => {
+    return (
+        `<div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>`
     );
 }

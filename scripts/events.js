@@ -2,7 +2,9 @@ import { TicTacToe } from "./game/TicTacToe.js";
 import * as constant from './constant.js';
 import * as overlay from './visual/overlays.js';
 import { CreateConfetti } from './visual/confetti.js';
+import { GetRndName } from './visual/Name.js';
 
+// ----------------- Tic Tac Toe -----------------
 export const handleReset = e => {
     Reset();
     //close overlay
@@ -70,6 +72,8 @@ export const Reset = () => {
     }
 }
 
+
+// ----------------- Show overlay -----------------
 export const ShowEndOverlay = (p, msg) => {
     const div = document.querySelector("body > div");
     let status;
@@ -84,7 +88,59 @@ export const ShowEndOverlay = (p, msg) => {
     CreateConfetti();
 }
 
-document.addEventListener("DOMContentLoaded", e => {
+export const ShowNameOverlay = (e) => {
+    // show name overlay
+    const body = document.querySelector("body > div");
+    body.innerHTML += overlay.NameOverlay();
+
+
+    const nom_text = document.querySelector("#NameForm span"),
+        inputNom = document.querySelector("#NameForm input[type=text]"),
+        btn_enter = document.querySelector("#NameForm button"),
+        rnd_link = document.querySelector("#NameForm a");
+
+    // set span to placeholder of input
+    nom_text.innerText = inputNom.placeholder;
+
+    // events
+    inputNom.onkeydown = ChangeName;
+    inputNom.onkeyup = ChangeName;
+    inputNom.onkeypress = ChangeName;
+    btn_enter.onclick = SubmitName;  // submit btn
+    // rnd btn
+    rnd_link.onclick = async () => {
+        const o = document.querySelector(".overlay > div");
+        o.insertAdjacentHTML('afterbegin', overlay.Loader());
+        let name = await GetRndName()
+        o.querySelector('.loader').remove();
+        inputNom.value = name;
+        nom_text.innerText = name;
+    };
+}
+
+
+// ----------------- Name overlay -----------------
+export const ChangeName = (e) => {
+    const t = e.target;
+    const nom_text = document.querySelector("#NameForm span");
+    nom_text.innerText = t.value;
+    if (t.value == "") {
+        nom_text.innerText = t.placeholder;
+    }
+}
+
+export const SubmitName = () =>{
+    const inputNom = document.querySelector("#NameForm input[type=text]");
+    // if empty
+    if (inputNom.value === ''){
+        console.log('Veuillez entrer un nom');
+        return;
+    }
+}
+
+
+// ----------------- Onload -----------------
+document.addEventListener("DOMContentLoaded", () => {
     Reset();
     document.querySelector("footer span").innerText = new Date().getFullYear();  //Replace date in footer for current year
 });

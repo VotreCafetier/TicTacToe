@@ -314,3 +314,46 @@ h1{
     100% { transform: rotateZ(15deg) rotateY(1440deg) translate(10vw,110vh); opacity: 0;}
 }
 
+
+.loader {
+    display: inline-block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 80px;
+    height: 80px;
+    z-index: 999;
+}
+    .loader div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid rgba(210,70,252,1);
+        border-radius: 50%;
+        animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: rgba(210,70,252,1) transparent transparent transparent;
+    }
+    .loader div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .loader div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .loader div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
