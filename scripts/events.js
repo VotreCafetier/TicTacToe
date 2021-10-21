@@ -103,9 +103,7 @@ export const ShowNameOverlay = (e) => {
     nom_text.innerText = inputNom.placeholder;
 
     // events
-    inputNom.onkeydown = ChangeName;
-    inputNom.onkeyup = ChangeName;
-    inputNom.onkeypress = ChangeName;
+    inputNom.oninput = ChangeName;
     btn_enter.onclick = SubmitName;  // submit btn
     // rnd btn
     rnd_link.onclick = async () => {
