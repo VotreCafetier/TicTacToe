@@ -51,8 +51,7 @@ export const handlePlay = (g,e,i) => {
     }
 }
 
-export const Reset = () => {
-    let player = ['Player 1', 'Player 2'];
+export const Reset = player => {
     // reset player overlay
     const p_overlay = document.querySelectorAll('#players_overlay p');
     // Ask for names of player
@@ -99,18 +98,35 @@ export const ShowNameOverlay = (e) => {
         btn_enter = document.querySelector("#NameForm button"),
         rnd_link = document.querySelector("#NameForm a");
 
+    let names = [];
+
     // set span to placeholder of input
     nom_text.innerText = inputNom.placeholder;
 
-    // events
-    inputNom.oninput = ChangeName;
-    btn_enter.onclick = SubmitName;  // submit btn
+    // name input
+    inputNom.oninput = (e) => {
+        const t = e.target;
+        const nom_text = document.querySelector("#NameForm span");
+        nom_text.innerText = t.value;
+        if (t.value == "") nom_text.innerText = t.placeholder;
+    };  
+    
+    // submit btn
+    btn_enter.onclick = () =>{
+        const inputNom = document.querySelector("#NameForm input[type=text]");
+        if (inputNom.value === '') return; // if empty
+        names.push(inputNom);
+    };
+
     // rnd btn
     rnd_link.onclick = async () => {
-        const o = document.querySelector(".overlay > div");
+        const o = document.querySelector(".overlay > div"),
+            input = document.querySelector("#NameForm input[type=text]");
         o.insertAdjacentHTML('afterbegin', overlay.Loader());
+        input.disabled = true;
         let name = await GetRndName()
         o.querySelector('.loader').remove();
+        input.disabled = false;
         inputNom.value = name;
         nom_text.innerText = name;
     };
@@ -139,6 +155,6 @@ export const SubmitName = () =>{
 
 // ----------------- Onload -----------------
 document.addEventListener("DOMContentLoaded", () => {
-    Reset();
+    ShowNameOverlay();
     document.querySelector("footer span").innerText = new Date().getFullYear();  //Replace date in footer for current year
 });

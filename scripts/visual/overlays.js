@@ -14,12 +14,12 @@ export const NameOverlay = () => {
     return (
         `<div id="NameForm" class="overlay">
             <div>
-                <h1>CHANGER VOTRE NOM</h1>
+                <h1>CHANGE YOUR NAME</h1>
                 <span></span>
                 <div>
-                    <input type="text" placeholder="Votre nom"/>
+                    <input type="text" placeholder="Player 1"/>
                     <a>Random</a>
-                    <button>Changer</button>
+                    <button>Change</button>
                 </div>
             </div>
         </div>`
