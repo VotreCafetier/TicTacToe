@@ -6,11 +6,12 @@ Vanilla JS
 - Dark and Light theme
 - Name overlay
 - Name overlay loading when random
-- JS Confetti
 - Pick a color for player which influences what color is the background of the player (if not selected random color)
 - XD interface
 - Opening animation
 - Reset animation
+- Check and alert if cors are not enabled
+- shortcuts numpad or number
 
 # To fix
 - Responsive
