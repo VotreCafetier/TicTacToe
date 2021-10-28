@@ -15,7 +15,7 @@ Vanilla JS
 
 # To fix
 - Responsive
-
+- When random name, clear to match regex
 
 
 # Ideas

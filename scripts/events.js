@@ -93,63 +93,35 @@ export const ShowNameOverlay = (e) => {
     body.innerHTML += overlay.NameOverlay();
 
 
-    const nom_text = document.querySelector("#NameForm span"),
-        inputNom = document.querySelector("#NameForm input[type=text]"),
-        btn_enter = document.querySelector("#NameForm button"),
-        rnd_link = document.querySelector("#NameForm a");
-
-    let names = [];
-
-    // set span to placeholder of input
-    nom_text.innerText = inputNom.placeholder;
-
-    // name input
-    inputNom.oninput = (e) => {
-        const t = e.target;
-        const nom_text = document.querySelector("#NameForm span");
-        nom_text.innerText = t.value;
-        if (t.value == "") nom_text.innerText = t.placeholder;
-    };  
+    const btn_enter = document.querySelector("#NameForm button"),
+        rnd_link = document.querySelectorAll("#NameForm a");
     
     // submit btn
-    btn_enter.onclick = () =>{
-        const inputNom = document.querySelector("#NameForm input[type=text]");
-        if (inputNom.value === '') return; // if empty
-        names.push(inputNom);
-    };
+    btn_enter.onclick = SubmitName;
 
     // rnd btn
-    rnd_link.onclick = async () => {
-        const o = document.querySelector(".overlay > div"),
-            input = document.querySelector("#NameForm input[type=text]");
-        o.insertAdjacentHTML('afterbegin', overlay.Loader());
-        input.disabled = true;
-        let name = await GetRndName()
-        o.querySelector('.loader').remove();
-        input.disabled = false;
-        inputNom.value = name;
-        nom_text.innerText = name;
-    };
+    rnd_link.forEach(e => {
+        e.onclick = async () => {
+            const o = document.querySelector(".overlay > div"),
+                input = e.previousElementSibling;
+            o.insertAdjacentHTML('afterbegin', overlay.Loader());
+            input.disabled = true;
+            let name = await GetRndName();
+            o.querySelector('.loader').remove();
+            input.disabled = false;
+            input.value = name;
+        };
+    });
 }
 
 
 // ----------------- Name overlay -----------------
-export const ChangeName = (e) => {
-    const t = e.target;
-    const nom_text = document.querySelector("#NameForm span");
-    nom_text.innerText = t.value;
-    if (t.value == "") {
-        nom_text.innerText = t.placeholder;
-    }
-}
-
 export const SubmitName = () =>{
-    const inputNom = document.querySelector("#NameForm input[type=text]");
-    // if empty
-    if (inputNom.value === ''){
-        console.log('Veuillez entrer un nom');
-        return;
-    }
+    const inputNom = document.querySelectorAll("#NameForm input[type=text]"),
+        regex = /^[a-zA-Z0-9\s]+$/g;
+    inputNom.forEach(e => {
+        regex.test(e.value)?console.log('match'):console.log('doesnt match');
+    });
 }
 
 

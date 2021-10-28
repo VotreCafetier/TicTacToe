@@ -15,9 +15,10 @@ export const NameOverlay = () => {
         `<div id="NameForm" class="overlay">
             <div>
                 <h1>CHANGE YOUR NAME</h1>
-                <span></span>
                 <div>
                     <input type="text" placeholder="Player 1"/>
+                    <a>Random</a>
+                    <input type="text" placeholder="Player 2"/>
                     <a>Random</a>
                     <button>Change</button>
                 </div>
@@ -28,7 +29,7 @@ export const NameOverlay = () => {
 
 export const Loader = () => {
     return (
-        `<div class="loader">
+        `<div class="loader" style="opacity: 0;">
             <div></div>
             <div></div>
             <div></div>
