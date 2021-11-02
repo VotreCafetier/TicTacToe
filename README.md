@@ -17,7 +17,7 @@ Vanilla JS
 - Close overlay in reset, not in every goddamn shit
 - Better code for handleReset
 - If draw, then no confetti
-- Verify player input (now deactivated)
+- fix verify input name overlay : only first input is okay
 
 
 # Ideas

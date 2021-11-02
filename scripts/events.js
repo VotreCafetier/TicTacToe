@@ -108,7 +108,10 @@ export const SubmitName = () =>{
     let names = [];
     const inputNom = document.querySelectorAll("#NameForm input[type=text]"),
         regex = /^[a-zA-Z0-9\s]+$/g;
-    inputNom.forEach(e => {if(regex.test(e.value)) names.push(e.value);});  // doesnt work here
+    inputNom.forEach(e => {
+        console.log(e.value);
+        regex.test(e.value)?console.log('works'):console.log('doesnt works');
+    });
     if(names.length === 2){
         Reset(names);
         // show names in player overlay
