@@ -16,6 +16,7 @@ Vanilla JS
 # To fix
 - Responsive
 - When random name, clear to match regex
+- Close overlay in reset
 
 
 # Ideas

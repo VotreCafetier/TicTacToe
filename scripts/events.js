@@ -117,16 +117,26 @@ export const ShowNameOverlay = (e) => {
 
 // ----------------- Name overlay -----------------
 export const SubmitName = () =>{
+    let names = [];
     const inputNom = document.querySelectorAll("#NameForm input[type=text]"),
         regex = /^[a-zA-Z0-9\s]+$/g;
     inputNom.forEach(e => {
-        regex.test(e.value)?console.log('match'):console.log('doesnt match');
+        if(!regex.test(e.value)) console.log('dont match');
+        names.push(e.value);
     });
+    if(names.length === 2){
+        Reset(names);
+        //close overlay
+        document.querySelector("#NameForm").outerHTML = '';
+        // show names in player overlay
+        const span_player = document.querySelectorAll('#players_overlay > p');
+        for (let i = 0; i < span_player.length; i++) span_player[i].innerText = names[i];
+    }
 }
 
 
 // ----------------- Onload -----------------
 document.addEventListener("DOMContentLoaded", () => {
-    ShowNameOverlay();
+    ShowNameOverlay(); // show name overlay
     document.querySelector("footer span").innerText = new Date().getFullYear();  //Replace date in footer for current year
 });
