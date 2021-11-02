@@ -32,17 +32,11 @@ export const handleHover = (e,r) => {
     const target = e.target;
     if(target.className === 'played') return;
     // render x for 1 && o for 2
-    if(r === 1){
-        target.innerHTML = constant.x_img;
-    }
-    else{
-        target.innerHTML = constant.o_img;
-    }
+    r === 1?target.innerHTML = constant.x_img:target.innerHTML = constant.o_img;
 }
 
 export const handlePlay = (g,e,i) => {
-    // play
-    const round = g.Play(e, i);
+    const round = g.Play(e, i); // play
     // change player overlay
     const p_overlay = document.querySelectorAll('#players_overlay p');
     if (round == 1) {
@@ -75,12 +69,7 @@ export const Reset = player => {
 export const ShowEndOverlay = (p, msg) => {
     const div = document.querySelector("body > div");
     let status;
-    if (p === 'Draw'){
-        status = 'Draw';
-    }
-    else{
-        status = `${p} is the winner with ${msg}`;
-    }
+    p === 'Draw'?status = 'Draw':status = `${p} is the winner with ${msg}`;
     div.innerHTML += overlay.endGameOverlay(status);
     document.querySelector("#winning_fiesta button").addEventListener('click', handleReset);
     CreateConfetti();
@@ -95,10 +84,10 @@ export const ShowNameOverlay = (e) => {
     const btn_enter = document.querySelector("#NameForm button"),
         rnd_link = document.querySelectorAll("#NameForm a");
     
-    // submit btn
-    btn_enter.onclick = SubmitName;
+    
+    btn_enter.onclick = SubmitName;  // submit btn
 
-    // rnd btn
+    // async function for random button
     rnd_link.forEach(e => {
         e.onclick = async () => {
             const o = document.querySelector(".overlay > div"),
@@ -119,10 +108,7 @@ export const SubmitName = () =>{
     let names = [];
     const inputNom = document.querySelectorAll("#NameForm input[type=text]"),
         regex = /^[a-zA-Z0-9\s]+$/g;
-    inputNom.forEach(e => {
-        if(!regex.test(e.value)) console.log('dont match');
-        names.push(e.value);
-    });
+    inputNom.forEach(e => {if(regex.test(e.value)) names.push(e.value);});  // doesnt work here
     if(names.length === 2){
         Reset(names);
         // show names in player overlay

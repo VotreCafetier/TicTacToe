@@ -16,6 +16,8 @@ Vanilla JS
 - When random name, clear to match regex
 - Close overlay in reset, not in every goddamn shit
 - Better code for handleReset
+- If draw, then no confetti
+- Verify player input (now deactivated)
 
 
 # Ideas
