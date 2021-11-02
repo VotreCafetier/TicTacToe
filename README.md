@@ -4,8 +4,6 @@ Vanilla JS
 
 ## Next features
 - Dark and Light theme
-- Name overlay
-- Name overlay loading when random
 - Pick a color for player which influences what color is the background of the player (if not selected random color)
 - XD interface
 - Opening animation
@@ -16,7 +14,8 @@ Vanilla JS
 # To fix
 - Responsive
 - When random name, clear to match regex
-- Close overlay in reset
+- Close overlay in reset, not in every goddamn shit
+- Better code for handleReset
 
 
 # Ideas

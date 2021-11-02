@@ -6,9 +6,12 @@ import { GetRndName } from './visual/Name.js';
 
 // ----------------- Tic Tac Toe -----------------
 export const handleReset = e => {
-    Reset();
-    //close overlay
-    document.querySelector("#winning_fiesta").outerHTML = '';
+    // get player from player overlay and replay a game
+    const p = [],
+        player_overlay = document.querySelectorAll('#players_overlay > p');
+    for (let i = 0; i < player_overlay.length; i++) p.push(player_overlay[i].innerText);
+    Reset(p);
+
     // clean played div
     const cells = document.querySelectorAll("#tictactoe > div");
     for (let i = 0; i < cells.length; i++) cells[i].className = '';
@@ -52,15 +55,11 @@ export const handlePlay = (g,e,i) => {
 }
 
 export const Reset = player => {
+    document.querySelectorAll('.overlay').forEach(e => e.remove());  // closes all overlays
+
     // reset player overlay
-    const p_overlay = document.querySelectorAll('#players_overlay p');
-    // Ask for names of player
-    // for (let i = 0; i < 2; i++) {
-    //     let response = prompt(`Enter name of Player ${i+1}`);
-    //     player[i] = response;
-    //     p_overlay[i].innerText = response;
-    // }
-    const game = new TicTacToe(player);
+    const p_overlay = document.querySelectorAll('#players_overlay p'),
+        game = new TicTacToe(player);
     // assign play on click on table
     const cells = document.querySelectorAll("#tictactoe > div");
     for (let i = 0; i < cells.length; i++) {
@@ -126,8 +125,6 @@ export const SubmitName = () =>{
     });
     if(names.length === 2){
         Reset(names);
-        //close overlay
-        document.querySelector("#NameForm").outerHTML = '';
         // show names in player overlay
         const span_player = document.querySelectorAll('#players_overlay > p');
         for (let i = 0; i < span_player.length; i++) span_player[i].innerText = names[i];
