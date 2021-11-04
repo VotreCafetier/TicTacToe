@@ -107,6 +107,49 @@ input{
 
 
 
+#Light_icon{
+    width: auto;
+    height: 40px;
+    top: 30px;
+    right: 30px;
+    position: absolute;
+    cursor: pointer;
+    transform: rotate(0);
+    transition: transform 0.8s ease-in-out;
+}
+
+#Dark_icon{
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+    transition: transform 0.8s;
+}
+
+    #Light_icon:hover, #Dark_icon:hover{
+        animation: Dark_Light_Icon_Hover 0.8s both;
+    }
+
+@keyframes Dark_Light_Icon_Hover {
+    0%, 100% {
+        transform: rotate(0);
+        transform-origin: 50% 50%;
+    }
+    15% {
+        transform: rotate(-6deg);
+    }
+    30% {
+        transform: rotate(6deg);
+    }
+    45% {
+        transform: rotate(-3.6deg);
+    }
+    60% {
+        transform: rotate(2.4deg);
+    }
+    75% {
+        transform: rotate(-1.2deg);
+    }
+}
+
 
 
 
