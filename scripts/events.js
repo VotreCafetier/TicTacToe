@@ -109,8 +109,7 @@ export const SubmitName = () =>{
     const inputNom = document.querySelectorAll("#NameForm input[type=text]"),
         regex = /^[a-zA-Z0-9\s]+$/g;
     inputNom.forEach(e => {
-        console.log(e.value);
-        e.value.match(regex)?names.push(e.value):console.log('doesnt works');
+        e.value.match(regex) && e.value !== ''?names.push(e.value):console.log('doesnt works');  // Check if names is not empty and is just number or letter or space
     });
     if(names.length === 2){
         Reset(names);
