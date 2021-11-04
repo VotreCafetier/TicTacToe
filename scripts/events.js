@@ -110,7 +110,7 @@ export const SubmitName = () =>{
         regex = /^[a-zA-Z0-9\s]+$/g;
     inputNom.forEach(e => {
         console.log(e.value);
-        regex.test(e.value)?console.log('works'):console.log('doesnt works');
+        e.value.match(regex)?names.push(e.value):console.log('doesnt works');
     });
     if(names.length === 2){
         Reset(names);
