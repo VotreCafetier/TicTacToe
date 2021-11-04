@@ -9,7 +9,7 @@ export const handleReset = e => {
     // get player from player overlay and replay a game
     const p = [],
         player_overlay = document.querySelectorAll('#players_overlay > p');
-    for (let i = 0; i < player_overlay.length; i++) p.push(player_overlay[i].innerText);
+    player_overlay.forEach(e => p.push(e.innerText));
     Reset(p);
 
     // clean played div
@@ -24,15 +24,14 @@ export const handleReset = e => {
 
 
 export const handleHoverOut = e => {
-    const target = e.target;
-    if(target.className !== 'played')target.innerHTML = '';
+    const t = e.target;
+    if(t.className !== 'played')t.innerHTML = '';  // if not played then remove everything inside the div (the icon)
 }
 
 export const handleHover = (e,r) => {
-    const target = e.target;
-    if(target.className === 'played') return;
-    // render x for 1 && o for 2
-    r === 1?target.innerHTML = constant.x_img:target.innerHTML = constant.o_img;
+    const t = e.target;
+    if(t.className === 'played') return;  // if already played, return
+    r === 1?t.innerHTML = constant.x_img:t.innerHTML = constant.o_img;  // render x for 1 && o for 2
 }
 
 export const handlePlay = (g,e,i) => {
@@ -50,10 +49,8 @@ export const handlePlay = (g,e,i) => {
 
 export const Reset = player => {
     document.querySelectorAll('.overlay').forEach(e => e.remove());  // closes all overlays
-
     // reset player overlay
-    const p_overlay = document.querySelectorAll('#players_overlay p'),
-        game = new TicTacToe(player);
+    const game = new TicTacToe(player);
     // assign play on click on table
     const cells = document.querySelectorAll("#tictactoe > div");
     for (let i = 0; i < cells.length; i++) {

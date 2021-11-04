@@ -9,6 +9,8 @@ Vanilla JS
 - shortcuts numpad or number
 - Error framework
 - Change name option in end overlay
+- Add Player 1 vs Player 2 in name overlay
+- Add smash intro when reset
 
 # To fix
 - Responsive
@@ -16,6 +18,7 @@ Vanilla JS
 - Better code for handleReset
 - If draw, then no confetti
 - Switch name api to random FANTASY name (would be cooler)
+- Show nothing in html until page is fully loaded, then show (preloader)
 
 
 ## Ideas
