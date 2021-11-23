@@ -373,4 +373,46 @@ h1{
       transform: rotate(360deg);
     }
   }
-  
+
+
+/* Error */
+#error{
+    position: fixed;
+    z-index: 999;
+    right: 20px;
+    width: 100%;
+    max-width: 200px;
+    padding: 10px 20px;
+    background-color: #ffe4e4;
+    top: 20px;
+    cursor: default!important;
+    border-radius: 3px;
+    border: 1px solid #b52121;
+    font-size: 11pt;
+    overflow: hidden;
+    box-shadow: 5px 5px 15px 5px rgb(0 0 0 / 4%);
+	animation: scale-in-hor-right 6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+    #error *{
+        color: #b52121;
+    }
+
+@keyframes scale-in-hor-right {
+    0%{
+        right: -250px;
+        opacity: 0;
+    }
+    10%{
+        right: 20px;
+        opacity: 1;
+    }
+    90%{
+        right: 20px;
+        opacity: 1;
+    }
+    100%{
+        right: -250px;
+        opacity: 0;
+    }
+}
