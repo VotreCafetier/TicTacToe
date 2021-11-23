@@ -65,11 +65,11 @@ export const Reset = player => {
 // ----------------- Show overlay -----------------
 export const ShowEndOverlay = (p, msg) => {
     const div = document.querySelector("body > div");
-    let status;
-    p === 'Draw'?status = 'Draw':status = `${p} is the winner with ${msg}`;
+    let status = 'Draw';
+    if (p !== 'Draw')status = `${p} is the winner with ${msg}`;
     div.innerHTML += overlay.endGameOverlay(status);
+    if (p !== 'Draw') CreateConfetti();
     document.querySelector("#winning_fiesta button").addEventListener('click', handleReset);
-    CreateConfetti();
 }
 
 export const ShowNameOverlay = (e) => {
