@@ -89,12 +89,13 @@ export const ShowNameOverlay = (e) => {
         e.onclick = async () => {
             const o = document.querySelector(".overlay > div"),
                 input = e.previousElementSibling;
-            o.insertAdjacentHTML('afterbegin', overlay.Loader());
+            o.insertAdjacentHTML('afterbegin', overlay.Loader()); // show loader
             input.disabled = true;
-            let name = await GetRndName();
-            o.querySelector('.loader').remove();
+            let name = await GetRndName();  // fetch a random name from api
+            // remove all dots from string
             input.disabled = false;
-            input.value = name;
+            input.value = name.replace(/\./g, '');  // place the name and remove all dots
+            o.querySelector('.loader').remove(); // remove loader
         };
     });
 }

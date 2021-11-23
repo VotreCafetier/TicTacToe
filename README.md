@@ -14,7 +14,6 @@ Vanilla JS
 
 # To fix
 - Responsive
-- When random name, clear to match regex
 - Better code for handleReset
 - If draw, then no confetti
 - Switch name api to random FANTASY name (would be cooler)

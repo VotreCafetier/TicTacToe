@@ -108,7 +108,7 @@ input{
 
 
 
-#Light_icon{
+#shader_icon{
     width: auto;
     height: 40px;
     top: 30px;
@@ -116,16 +116,16 @@ input{
     position: absolute;
     cursor: pointer;
     transform: rotate(0);
-    transition: transform 0.8s ease-in-out;
+    transition: transform 0.4s ease-in-out;
 }
 
-#Dark_icon{
-    transform: rotate(180deg);
+.Dark_icon{
+    transform: rotate(180deg)!important;
     transform-origin: 50% 50%;
-    transition: transform 0.8s;
+    transition: transform 0.4s;
 }
 
-    #Light_icon:hover, #Dark_icon:hover{
+    #shader_icon:hover{
         animation: Dark_Light_Icon_Hover 0.8s both;
     }
 
